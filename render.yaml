@@ -6,12 +6,24 @@ services:
     buildCommand: cd backend && npm install && npx prisma generate && npm run build
     startCommand: cd backend && npm run start:prod
     envVars:
+      - key: NODE_VERSION
+        value: "20"
       - key: PORT
         value: 3000
       - key: DATABASE_URL
         sync: false # Set this manually in Render dashboard to your Supabase/Postgres URL
       - key: JWT_SECRET
         sync: false # Set this manually in Render dashboard to a strong secret key
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: niveshventures-frontend
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: ADMIN_URL
+        fromService:
+          type: web
+          name: niveshventures-admin
+          envVarKey: RENDER_EXTERNAL_URL
 
   # The Frontend Static Site (Vite + React)
   - type: web
@@ -19,7 +31,13 @@ services:
     env: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
+      - key: NODE_VERSION
+        value: "20"
       - key: VITE_API_URL
         fromService:
           type: web
@@ -32,7 +50,13 @@ services:
     env: static
     buildCommand: cd admin-frontend && npm install && npm run build
     staticPublishPath: admin-frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
+      - key: NODE_VERSION
+        value: "20"
       - key: VITE_API_URL
         fromService:
           type: web
