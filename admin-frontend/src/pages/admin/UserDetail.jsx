@@ -111,7 +111,7 @@ export default function UserDetail({ userId, onBack }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Profile Control */}
-        <div className="glass-card p-6 rounded-2xl border border-white/10">
+        <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 shadow-lg">
           <div className="flex items-center gap-3 mb-6">
             <User className="w-5 h-5 text-blue-400" />
             <h3 className="font-bold text-white text-lg">Profile & Status Control</h3>
@@ -150,7 +150,7 @@ export default function UserDetail({ userId, onBack }) {
         </div>
 
         {/* Wallet Master Control */}
-        <div className="glass-card p-6 rounded-2xl border border-white/10">
+        <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 shadow-lg">
           <div className="flex items-center gap-3 mb-6">
             <Wallet className="w-5 h-5 text-green-400" />
             <h3 className="font-bold text-white text-lg">Wallet Master Control</h3>
@@ -206,7 +206,7 @@ export default function UserDetail({ userId, onBack }) {
         </div>
 
         {/* Security Control */}
-        <div className="glass-card p-6 rounded-2xl border border-white/10">
+        <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 shadow-lg">
           <div className="flex items-center gap-3 mb-6">
             <Shield className="w-5 h-5 text-red-400" />
             <h3 className="font-bold text-white text-lg">Security Control</h3>
@@ -224,7 +224,7 @@ export default function UserDetail({ userId, onBack }) {
         </div>
 
         {/* Recent Transactions Audit */}
-        <div className="glass-card p-6 rounded-2xl border border-white/10">
+        <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 shadow-lg">
           <div className="flex items-center gap-3 mb-6">
             <Activity className="w-5 h-5 text-purple-400" />
             <h3 className="font-bold text-white text-lg">Financial Audit (Last 10)</h3>

@@ -46,10 +46,10 @@ export default function ManageUsers({ onSelectUser }) {
         </div>
       </div>
 
-      <div className="glass-card rounded-2xl overflow-hidden border border-white/10">
+      <div className="bg-[#111111] shadow-lg rounded-2xl overflow-hidden border border-white/5">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm text-gray-300">
-            <thead className="bg-[#111111] border-b border-white/10">
+            <thead className="bg-[#1a1a1a] border-b border-white/5">
               <tr>
                 <th className="px-6 py-4 font-semibold text-gray-400">User</th>
                 <th className="px-6 py-4 font-semibold text-gray-400">Status</th>
@@ -88,17 +88,17 @@ export default function ManageUsers({ onSelectUser }) {
                     </td>
                     <td className="px-6 py-4">
                       {user.status === 'SUSPENDED' ? (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/20">
                           <ShieldAlert className="w-3.5 h-3.5" /> Suspended
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/20">
                           <CheckCircle className="w-3.5 h-3.5" /> Active
                         </span>
                       )}
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`px-2 py-1 rounded-md text-xs font-semibold ${user.role === 'ADMIN' ? 'bg-red-500 text-white' : 'bg-white/10 text-gray-300'}`}>
+                      <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${user.role === 'ADMIN' ? 'bg-red-500/20 text-red-400 border border-red-500/20' : 'bg-blue-500/20 text-blue-400 border border-blue-500/20'}`}>
                         {user.role}
                       </span>
                     </td>
