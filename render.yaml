@@ -1,0 +1,40 @@
+services:
+  # The Backend Web Service (NestJS)
+  - type: web
+    name: niveshventures-backend
+    env: node
+    buildCommand: cd backend && npm install && npx prisma generate && npm run build
+    startCommand: cd backend && npm run start:prod
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        sync: false # Set this manually in Render dashboard to your Supabase/Postgres URL
+      - key: JWT_SECRET
+        sync: false # Set this manually in Render dashboard to a strong secret key
+
+  # The Frontend Static Site (Vite + React)
+  - type: web
+    name: niveshventures-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: niveshventures-backend
+          envVarKey: RENDER_EXTERNAL_URL
+
+  # The Admin Frontend Static Site (Vite + React)
+  - type: web
+    name: niveshventures-admin
+    env: static
+    buildCommand: cd admin-frontend && npm install && npm run build
+    staticPublishPath: admin-frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: niveshventures-backend
+          envVarKey: RENDER_EXTERNAL_URL

@@ -1,0 +1,110 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id              String          @id @default(uuid()) @db.Uuid
+  name            String
+  email           String          @unique
+  phone           String?
+  country         String?
+  passwordHash    String
+  role            String          @default("USER")
+  status          String          @default("ACTIVE") // ACTIVE or SUSPENDED
+  referralCode    String          @unique
+  referredBy      String?
+  sponsorSide     String?
+  isVerified      Boolean         @default(false)
+  wallet          Wallet?
+  transactions    Transaction[]
+  incomes         Income[]
+  walletAddresses WalletAddress[]
+  userPackages     UserPackage[]
+  depositAddresses DepositAddress[]
+  createdAt        DateTime        @default(now())
+}
+
+model Wallet {
+  id             String   @id @default(uuid()) @db.Uuid
+  mineBalance    Float    @default(0)
+  nodeBalance    Float    @default(0)
+  capitalBalance Float    @default(0)
+  currency       String   @default("USDT")
+  userId         String   @unique @db.Uuid
+  user           User     @relation(fields: [userId], references: [id])
+  createdAt      DateTime @default(now())
+}
+
+model WalletAddress {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @db.Uuid
+  walletType String   @default("USDT.BEP20")
+  address    String
+  status     String   @default("Available")
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model DepositAddress {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @db.Uuid
+  network    String
+  address    String   @unique
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, network])
+}
+
+model Package {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String
+  type         String
+  price        Float
+  dailyReturn  Float
+  duration     Int
+  description  String?
+  userPackages UserPackage[]
+  createdAt    DateTime      @default(now())
+}
+
+model UserPackage {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  packageId String   @db.Uuid
+  status    String   @default("ACTIVE")
+  user      User     @relation(fields: [userId], references: [id])
+  package   Package  @relation(fields: [packageId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Transaction {
+  id         String   @id @default(uuid()) @db.Uuid
+  amount     Float
+  type       String
+  walletType String   @default("mineBalance")
+  note       String?
+  txHash     String?  @unique
+  status     String   @default("SUCCESS")
+  userId     String   @db.Uuid
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model Income {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @db.Uuid
+  incomeType  String
+  amount      Float
+  fromUserId  String?
+  description String?
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}
