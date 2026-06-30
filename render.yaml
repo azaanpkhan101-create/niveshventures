@@ -12,6 +12,8 @@ services:
         value: 3000
       - key: DATABASE_URL
         sync: false # Set this manually in Render dashboard to your Supabase/Postgres URL
+      - key: DIRECT_URL
+        sync: false # Set this manually in Render dashboard to your Supabase Direct URL (port 5432)
       - key: JWT_SECRET
         sync: false # Set this manually in Render dashboard to a strong secret key
       - key: FRONTEND_URL
