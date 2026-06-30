@@ -70,6 +70,33 @@ export class AuthService {
     };
   }
 
+  async adminLogin(dto: LoginDto) {
+    const user = await this.prisma.user.findUnique({ where: { email: dto.email } });
+    if (!user) throw new UnauthorizedException('Invalid credentials');
+
+    if (user.role !== 'ADMIN') {
+      throw new UnauthorizedException('Access denied. Admin only.');
+    }
+
+    if (user.status === 'SUSPENDED') {
+      throw new UnauthorizedException('Your account has been suspended by an administrator.');
+    }
+
+    const isMatch = await bcrypt.compare(dto.password, user.passwordHash);
+    if (!isMatch) throw new UnauthorizedException('Invalid credentials');
+
+    const payload = { sub: user.id, email: user.email, role: user.role };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        referralCode: user.referralCode,
+      }
+    };
+  }
+
   async getProfile(userId: string) {
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
