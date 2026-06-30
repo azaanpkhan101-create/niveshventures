@@ -54,15 +54,15 @@ export default function Login() {
           {/* Logo */}
           <div className="flex items-center justify-center mb-12">
              <div className="text-center" style={{ fontFamily: "'Orbitron', sans-serif" }}>
-                <div className="text-xs tracking-[0.3em] text-purple-400 -mb-1">NIVESHVENTURES</div>
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 tracking-wider flex items-center gap-1">
-                  CRYP<span className="text-yellow-500 text-3xl">🪙</span>S
+                <div className="text-xs tracking-[0.3em] text-red-500 -mb-1">SYSTEM CONTROLLER</div>
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 tracking-wider flex items-center gap-1">
+                  ADMIN<span className="text-white text-3xl">🛡️</span>PANEL
                 </div>
              </div>
           </div>
 
-          <h1 className="text-3xl text-white mb-2" style={{ fontFamily: "'Orbitron', sans-serif" }}>Sign In</h1>
-          <p className="text-gray-400 text-sm mb-8">Access the Niveshventures Cryptos panel using your userid and passcode.</p>
+          <h1 className="text-3xl text-white mb-2" style={{ fontFamily: "'Orbitron', sans-serif" }}>Secure Login</h1>
+          <p className="text-gray-400 text-sm mb-8">Access the restricted Niveshventures admin system.</p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <InputField 
