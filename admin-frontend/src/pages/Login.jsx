@@ -53,7 +53,7 @@ export default function Login() {
       <div className="w-full lg:w-1/2 flex flex-col justify-between p-8 sm:p-12 lg:p-16 relative">
         {/* Abstract dark overlay / texture could go here if needed */}
         
-        <div className="flex-1 flex flex-col max-w-md mx-auto w-full pt-10">
+        <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full py-10">
           
           {/* Logo */}
           <div className="flex items-center justify-center mb-12">
