@@ -23,12 +23,12 @@ export default function KYC() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-white mb-1">KYC Approvals</h2>
           <p className="text-gray-400 text-sm">Review and manage user identity verifications.</p>
         </div>
-        <div className="relative w-64">
+        <div className="relative w-full sm:w-64">
           <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
           <input type="text" placeholder="Search applications..." className="w-full bg-[#111111] border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-red-500 transition-colors" />
         </div>
@@ -45,7 +45,7 @@ export default function KYC() {
           </div>
         ) : (
           applications.map(app => (
-            <motion.div key={app.id} className="bg-[#111111] border border-white/5 p-5 rounded-xl flex items-center justify-between shadow-lg">
+            <motion.div key={app.id} className="bg-[#111111] border border-white/5 p-5 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg gap-4">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-500/10 rounded-lg text-blue-400 border border-blue-500/20">
                   <FileText className="w-6 h-6" />
@@ -55,11 +55,11 @@ export default function KYC() {
                   <p className="text-sm text-gray-400">{app.documentType} • Submitted {app.submittedAt}</p>
                 </div>
               </div>
-              <div className="flex gap-3">
-                <button className="px-4 py-2 bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2">
+              <div className="flex gap-3 w-full sm:w-auto">
+                <button className="flex-1 sm:flex-none justify-center px-4 py-2 bg-green-500/10 text-green-400 hover:bg-green-500/20 border border-green-500/20 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2">
                   <Check className="w-4 h-4" /> Approve
                 </button>
-                <button className="px-4 py-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2">
+                <button className="flex-1 sm:flex-none justify-center px-4 py-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2">
                   <X className="w-4 h-4" /> Reject
                 </button>
               </div>

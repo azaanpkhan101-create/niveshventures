@@ -117,7 +117,7 @@ export default function UserDetail({ userId, onBack }) {
             <h3 className="font-bold text-white text-lg">Profile & Status Control</h3>
           </div>
           <form onSubmit={handleProfileUpdate} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs text-gray-400 mb-1">Full Name</label>
                 <input type="text" value={profileForm.name} onChange={e => setProfileForm(f => ({...f, name: e.target.value}))} className="w-full bg-[#111] border border-white/10 rounded-lg p-2 text-white text-sm" />
@@ -156,7 +156,7 @@ export default function UserDetail({ userId, onBack }) {
             <h3 className="font-bold text-white text-lg">Wallet Master Control</h3>
           </div>
           
-          <div className="grid grid-cols-3 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
             <div className="bg-[#111] border border-white/10 p-3 rounded-xl">
               <div className="text-xs text-gray-500">Mine Balance</div>
               <div className="font-mono text-white font-bold">${user.wallet?.mineBalance?.toFixed(2) || '0.00'}</div>
@@ -172,7 +172,7 @@ export default function UserDetail({ userId, onBack }) {
           </div>
 
           <form onSubmit={handleWalletUpdate} className="space-y-4 border-t border-white/5 pt-4">
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <label className="block text-xs text-gray-400 mb-1">Action</label>
                 <select value={walletForm.action} onChange={e => setWalletForm(f => ({...f, action: e.target.value}))} className="w-full bg-[#111] border border-white/10 rounded-lg p-2 text-white text-sm">
@@ -189,7 +189,7 @@ export default function UserDetail({ userId, onBack }) {
                 </select>
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <label className="block text-xs text-gray-400 mb-1">Amount ($)</label>
                 <input type="number" min="0.01" step="0.01" required value={walletForm.amount} onChange={e => setWalletForm(f => ({...f, amount: e.target.value}))} className="w-full bg-[#111] border border-white/10 rounded-lg p-2 text-white text-sm" placeholder="0.00" />
@@ -212,7 +212,7 @@ export default function UserDetail({ userId, onBack }) {
             <h3 className="font-bold text-white text-lg">Security Control</h3>
           </div>
           <p className="text-sm text-gray-400 mb-4">Forcefully reset the user's login password. They will be logged out of all active sessions.</p>
-          <form onSubmit={handlePasswordReset} className="flex gap-3">
+          <form onSubmit={handlePasswordReset} className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
               <Lock className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
               <input type="text" required value={passwordForm} onChange={e => setPasswordForm(e.target.value)} placeholder="Enter new password" className="w-full bg-[#111] border border-white/10 rounded-lg py-2 pl-9 pr-3 text-white text-sm" />

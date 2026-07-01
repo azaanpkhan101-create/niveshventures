@@ -21,12 +21,12 @@ export default function Reports() {
   if (!stats) return <div className="text-gray-400 py-10">Loading reports...</div>;
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-white mb-1">Platform Reports</h2>
           <p className="text-gray-400 text-sm">Financial metrics and growth analytics.</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#111111] border border-white/10 hover:bg-white/5 rounded-lg text-sm font-medium transition-colors">
+        <button className="flex items-center gap-2 px-4 py-2 bg-[#111111] border border-white/10 hover:bg-white/5 rounded-lg text-sm font-medium transition-colors w-full sm:w-auto justify-center">
           <Download className="w-4 h-4" /> Export CSV
         </button>
       </div>
@@ -49,7 +49,7 @@ export default function Reports() {
         <h3 className="font-semibold mb-4 flex items-center gap-2 text-white"><TrendingUp className="w-5 h-5 text-green-400" /> Platform Growth</h3>
         <p className="text-sm text-gray-400 mb-6">A high-level summary of the platform's user acquisition and trading volume over the last 30 days.</p>
         
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <div className="bg-[#1a1a1a] border border-white/5 p-5 rounded-xl">
             <div className="text-sm text-gray-400 mb-2">New Users (30d)</div>
             <div className="text-3xl font-bold text-white">+{stats.newUsers}</div>
