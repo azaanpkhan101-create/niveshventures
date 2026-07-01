@@ -32,7 +32,10 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await axios.post('/auth/login', form);
-      if (res.data.user) {
+      if (res.data.user && res.data.access_token) {
+        localStorage.setItem('token', res.data.access_token);
+        navigate('/dashboard');
+      } else if (res.data.user) {
         navigate('/dashboard');
       }
     } catch (err) {

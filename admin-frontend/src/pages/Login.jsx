@@ -32,7 +32,11 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await axios.post('/auth/admin-login', form);
-      if (res.data.user) {
+      if (res.data.user && res.data.access_token) {
+        localStorage.setItem('admin_token', res.data.access_token);
+        navigate('/admin/dashboard');
+      } else if (res.data.user) {
+        // Fallback if no token (shouldn't happen with updated backend)
         navigate('/admin/dashboard');
       }
     } catch (err) {

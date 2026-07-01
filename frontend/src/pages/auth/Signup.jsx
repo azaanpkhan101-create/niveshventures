@@ -33,7 +33,10 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/auth/signup', form);
+      const res = await axios.post('/auth/signup', form);
+      if (res.data.access_token) {
+        localStorage.setItem('token', res.data.access_token);
+      }
       navigate('/dashboard');
     } catch (err) {
       console.error(err);
