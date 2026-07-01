@@ -6,7 +6,7 @@ import {
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function Sidebar({ activeView, setActiveView }) {
+export default function Sidebar({ activeView, setActiveView, isMobile = false }) {
   const navigate = useNavigate();
   const [openMenus, setOpenMenus] = useState({});
 
@@ -36,7 +36,7 @@ export default function Sidebar({ activeView, setActiveView }) {
   );
 
   return (
-    <aside className="w-64 min-h-screen bg-[#0f0f11] border-r border-white/5 flex flex-col hidden md:flex sticky top-0 overflow-y-auto custom-scrollbar">
+    <aside className={`w-64 min-h-screen bg-[#0f0f11] border-r border-white/5 flex flex-col sticky top-0 overflow-y-auto custom-scrollbar ${isMobile ? 'flex' : 'hidden md:flex'}`}>
       {/* Logo */}
       <div className="p-6 border-b border-white/5 bg-[#111111]/50">
         <div className="flex items-center gap-2 mb-2">

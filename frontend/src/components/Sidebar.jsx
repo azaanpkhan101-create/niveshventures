@@ -6,7 +6,7 @@ import {
   PieChart, Star, LifeBuoy, MonitorPlay, LogOut, ChevronDown, ChevronRight
 } from 'lucide-react';
 
-export default function Sidebar({ activeView, setActiveView }) {
+export default function Sidebar({ activeView, setActiveView, isMobile = false }) {
   const [openMenus, setOpenMenus] = useState({
     settings: false,
     network: false,
@@ -75,7 +75,7 @@ export default function Sidebar({ activeView, setActiveView }) {
   };
 
   return (
-    <aside className="w-64 min-h-screen bg-[#0f0f11] border-r border-white/5 flex flex-col hidden md:flex sticky top-0 overflow-y-auto custom-scrollbar">
+    <aside className={`w-64 min-h-screen bg-[#0f0f11] border-r border-white/5 flex flex-col sticky top-0 overflow-y-auto custom-scrollbar ${isMobile ? 'flex' : 'hidden md:flex'}`}>
       {/* Logo */}
       <div className="p-6">
         <div className="flex items-center gap-2 mb-2">

@@ -156,7 +156,7 @@ export default function AdminDashboard() {
         <div className="fixed inset-0 z-50 flex md:hidden">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}></div>
           <div className="relative w-64 h-full">
-            <Sidebar activeView={activeView} setActiveView={(view) => { setActiveView(view); setMobileMenuOpen(false); setSelectedUserId(null); }} />
+            <Sidebar isMobile activeView={activeView} setActiveView={(view) => { setActiveView(view); setMobileMenuOpen(false); setSelectedUserId(null); }} />
           </div>
         </div>
       )}
